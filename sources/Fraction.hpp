@@ -111,7 +111,15 @@ public:
         // >>
     friend istream& operator>>(istream& input, Fraction& frac){
         char chr = 0;
-        input >> frac.numerator >> chr >> frac.denominator;
+        input >> frac.numerator >> frac.denominator;
+        if(frac.denominator == 0){
+            throw invalid_argument("Wrong input denominator == 0.");
+        }
+        //Help on : https://stackoverflow.com/questions/4206816/ifstream-check-if-opened-successfully
+        //        : https://web.physics.utah.edu/~detar/phys6720/handouts/iomethods/iomethods/node2.html
+        if(input.fail()){
+            throw invalid_argument("Wrong input, the standard input is : Fraction(number1 number2).");
+        }
         return input;
     }
     };
