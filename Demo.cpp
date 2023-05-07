@@ -33,8 +33,11 @@ int main() {
     if (a > 1.1) cout << " a is bigger than 1.1" << endl;
     else cout << " a is smaller than 1.1" << endl;*/
 
-    Fraction c(1.43);
+    Fraction c{2, 3};
     printf("numerateur : %d / denominateur : %d\n", c.getNumerator(),c.getDenominator());
+    Fraction d{-1, 5};
+    printf("numerateur : %d / denominateur : %d\n", d.getNumerator(),d.getDenominator());
+
 
 
 }

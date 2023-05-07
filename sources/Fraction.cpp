@@ -1,4 +1,5 @@
 #include "Fraction.hpp"
+#include <cstdlib>  // function abs()
 using namespace std;
 using namespace ariel;
 
@@ -16,6 +17,10 @@ using namespace ariel;
             throw invalid_argument("The denominator cannot be 0");
         }else{
             Min_Form(numerator,denominator);
+            if(denominator < 0){
+                numerator *= -1;
+                denominator *= -1;
+            }
         }
     }
 /*
@@ -50,20 +55,21 @@ EX : 0.44 --> 1 : den = 10 nun = 4.4
     Fraction::~Fraction(){}
 
 // Function to change the function to the min form : exemple : 2/6 = 1/3
-    int Fraction:: pgcd(int varA, int varB) {
-    if (varB == 0) {
-        return varA;
+    int Fraction::pgcd(int varA, int varB) {
+        if (varB == 0) {
+            return varA;
         } 
-    else {
-        return pgcd(varB, varA % varB);
+        else {
+            return pgcd(varB, varA % varB);
         }
     }
 
-    void Fraction:: Min_Form(int& num, int& den){
-        int diviseur = pgcd(num, den);
+    void Fraction::Min_Form(int& num, int& den) {
+        int diviseur = abs(pgcd(num, den));
         num /= diviseur;
         den /= diviseur;
     }
+
 
     // operator : [+] f1+f2 / f1+number / number+f1
     /*
