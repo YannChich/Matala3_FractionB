@@ -180,13 +180,12 @@ TEST_CASE("Operator ++ and --"){
 }
 
 TEST_CASE("Operator << and >>"){
-    Fraction f1(3, 4);
+    Fraction f1(3,4);
+    ostringstream ss;
+    ss << f1;
+    CHECK(ss.str() == "3/4");
 
-    ostringstream oss;
-    oss << f1;
-    CHECK(oss.str() == "3/4 ");
-
-    istringstream iss("5/6");
+    istringstream iss("5 6");
     Fraction f2;
     iss >> f2;
     CHECK(f2.getNumerator() == 5);

@@ -40,12 +40,8 @@ EX : round(2.782*1000) ---> round(2782.0)
     }
 
     //Copy
-    Fraction::Fraction(const Fraction& other) {
-    this->numerator = other.numerator;
-    this->denominator = other.denominator;
-    }
-    // Move Constructor
-    Fraction::Fraction(Fraction&& other) noexcept{}
+    Fraction::Fraction(const Fraction& other) : numerator(other.numerator), denominator(other.denominator) {}
+
 
 // Destructor 
     Fraction::~Fraction(){}
@@ -202,15 +198,6 @@ EX : round(2.782*1000) ---> round(2782.0)
         }
         return *this; // Renvoyer l'objet modifié
     }
-    // For the move
-    Fraction& Fraction::operator=(Fraction&& other) noexcept{
-        if(this != &other){ // Vérifier si les deux objets sont différents
-            numerator = move(other.numerator); // Utiliser std::move pour transférer les données de l'objet "other"
-            denominator = move(other.denominator);
-        }
-        return *this; // Renvoyer l'objet modifié
-    }
-
     // operator : [>] f1 > f2 / f1 > number / number > f1
     /*
     Each fonction is the min_Form.

@@ -25,8 +25,6 @@ public:
     Fraction(double num);
     //Copy
     Fraction(const Fraction& other);
-    // Move Constructor
-    Fraction(Fraction&& other) noexcept;
 
 // Destructor 
     ~Fraction();
@@ -69,7 +67,6 @@ public:
 
     // operator : [=] f1 = f2
     Fraction& operator=(const Fraction& other); 
-    Fraction& operator=(Fraction&& other) noexcept;
 
     // operator : [>] f1 > f2 / f1 > number / number > f1
     const bool operator>(const Fraction& fon2) const;

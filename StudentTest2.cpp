@@ -621,7 +621,7 @@ TEST_SUITE("Input and output operators tests") {
         std::stringstream ss;
 
         // Numerator and denominator are positive
-        Fraction frac{3, 4};
+        Fraction frac{3,4};
         ss << frac;
         CHECK(ss.str() == "3/4");
 
