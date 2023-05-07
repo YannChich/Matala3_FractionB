@@ -24,6 +24,8 @@ test1: TestRunner.o StudentTest1.o  $(OBJECTS)
 test2: TestRunner.o StudentTest2.o  $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+test: TestRunner.o Test.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 tidy:
 	$(TIDY) $(HEADERS) $(TIDY_FLAGS) --

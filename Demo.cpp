@@ -17,7 +17,7 @@ using namespace ariel;
 
 
 int main() {
-    Fraction a(5,3), b(14,21);
+    /*Fraction a(5,3), b(14,21);
     cout << "a: " << a << "b: " << b << endl;
     cout << "a+b" << a+b << endl; 
     cout << "a-b" << a-b << endl; 
@@ -31,7 +31,10 @@ int main() {
 
     cout << "c >=b ? : " << (c >= b) << endl;
     if (a > 1.1) cout << " a is bigger than 1.1" << endl;
-    else cout << " a is smaller than 1.1" << endl;
+    else cout << " a is smaller than 1.1" << endl;*/
+
+    Fraction c(1.43);
+    printf("numerateur : %d / denominateur : %d\n", c.getNumerator(),c.getDenominator());
 
 
 }
