@@ -8,7 +8,7 @@ using namespace ariel;
 
    //Default
     Fraction::Fraction(){
-        this->numerator = 1;
+        this->numerator = 0;
         this->denominator = 1;
     }
     //Parameterized
@@ -41,7 +41,12 @@ EX : round(2.782*1000) ---> round(2782.0)
 
     //Copy
     Fraction::Fraction(const Fraction& other) : numerator(other.numerator), denominator(other.denominator) {}
-
+    // Move Constructor
+    // https://en.cppreference.com/w/cpp/language/move_assignment
+    Fraction::Fraction(Fraction&& other) noexcept : numerator(move(other.numerator)), denominator(move(other.denominator)) {
+        other.numerator = 0;
+        other.denominator = 1;
+    }
 
 // Destructor 
     Fraction::~Fraction(){}
@@ -197,6 +202,17 @@ EX : round(2.782*1000) ---> round(2782.0)
             denominator = other.denominator;
         }
         return *this; // Renvoyer l'objet modifié
+    }
+   // For the move 
+    Fraction& Fraction::operator=(Fraction&& other) noexcept{
+        if(this == &other){
+            return *this;
+        }
+        numerator = move(other.numerator);
+        denominator = move(other.denominator);
+        other.numerator = 0;
+        other.denominator =1;
+        return *this;
     }
     // operator : [>] f1 > f2 / f1 > number / number > f1
     /*
