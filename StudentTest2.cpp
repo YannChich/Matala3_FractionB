@@ -178,7 +178,7 @@ TEST_SUITE("Overloaded < and > operators tests") {
         }
     }
 
-    TEST_CASE("Other fraction comparisons") {
+        TEST_CASE("Other fraction comparisons") {
         std::vector<std::pair<Fraction, Fraction>> fracs = {
                 {Fraction{2, 6}, Fraction{1, 2}},
                 {Fraction{1000, 3000}, Fraction{1, 2}},
