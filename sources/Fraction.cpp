@@ -317,3 +317,25 @@ EX : round(2.782*1000) ---> round(2782.0)
         Min_Form(numerator,denominator);
         return old;
     }
+
+    ostream& ariel::operator<<(ostream& output,const Fraction& frac){
+        return output << frac.numerator << "/" << frac.denominator;
+    }
+
+    istream& ariel::operator>>(istream& input, Fraction& frac){
+        char chr = 0;
+        input >> frac.numerator >> frac.denominator;
+        if(frac.denominator < 0){
+            frac.denominator *= -1;
+            frac.numerator *= -1;
+        }
+        if(frac.denominator == 0){
+            throw runtime_error("Wrong input denominator == 0.");
+        }
+        //Help on : https://stackoverflow.com/questions/4206816/ifstream-check-if-opened-successfully
+        //        : https://web.physics.utah.edu/~detar/phys6720/handouts/iomethods/iomethods/node2.html
+        if(input.fail()){
+            throw runtime_error("Wrong input, the standard input is : Fraction(number1 number2).");
+        }
+        return input;
+    }
