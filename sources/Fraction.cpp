@@ -339,3 +339,69 @@ EX : round(2.782*1000) ---> round(2782.0)
         }
         return input;
     }
+
+    // ----------------------------------- TRAINING EXAM ------------------------------
+
+    // Operator !=
+    const bool Fraction::operator!=(const Fraction& frac) const{
+        return !(*this==frac);
+
+    }
+    const bool Fraction::operator!=(const float& number) const{
+        return !(*this==number);
+    }
+    const bool ariel::operator!=(const float& num,const Fraction& frac){
+        return !(num==frac);
+    }
+
+    // Operator += , toute les opération serons sur this
+    // 1/3 += 1/2 ---> 1/3 + 1/2 donc je dois multiplier les dénominteur ensemble et ensuite ajouter les numérateur
+    // 1/3 + 1/2 = 1*2 / 3*2  +  1*3 / 3*2  = 2/6 + 3/6 = 5/6
+    Fraction& Fraction::operator+=(const Fraction& fon2){
+        this->numerator = (this->numerator * fon2.denominator) + (fon2.numerator * this->denominator);
+        this->denominator = this->denominator * fon2.denominator;
+        Min_Form(this->numerator,this->denominator);
+        return *this;
+    }
+    Fraction& Fraction::operator+=(const float& number){
+        Fraction frac = Fraction(number);
+        return *this+=frac;
+    }
+
+    // Function Pow
+    Fraction Fraction::pow(int pow) const {
+        int num =1;
+        int deno =1;
+        if(pow ==0){
+            return Fraction(1,1); 
+        }
+        else if(pow > 0){
+            for(int i=0;i<pow;i++){
+                num *= this->numerator;
+                deno *= this->denominator;
+            }
+        }
+        else {
+            // la puissance est negatif donc je dois faire par exemple : (2/5)^-3 = (5^3 / 2^3)
+            for(int i=0;i<abs(pow);i++){
+                num *= this->denominator;
+                deno *= this->numerator;
+            }
+        }
+        return Fraction(num,deno);
+    }
+
+    int& Fraction::operator[](int index){
+        if(index > 1 || index < 0){
+            throw out_of_range("Invalid index : usage : index=0 || index=1");
+        }
+        if(index == 0) return this->numerator;
+        return this->denominator;
+    }
+
+
+    double Fraction::operator()() const {
+        double result = static_cast<double>(this->numerator) / this->denominator;
+        result = round(result * 1000) / 1000;
+        return result;
+    }

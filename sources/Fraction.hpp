@@ -108,5 +108,26 @@ public:
     friend ostream& operator<<(ostream& output,const Fraction& frac);
         // >>
     friend istream& operator>>(istream& input, Fraction& frac);
+
+    // ---------------------------- TRAINING OPERATOR -----------------------------------
+
+    // Operator !=
+    const bool operator!=(const Fraction& frac) const;
+    const bool operator!=(const float& number) const;
+    friend const bool operator!=(const float& num,const Fraction& frac);
+
+    // Operator +=
+    Fraction& operator+=(const Fraction& fon2);
+    Fraction& operator+=(const float& number);
+
+    // Function Pow
+    Fraction pow(int pow) const;
+
+    // Operator [] , [0] renvoie numérateur et [1] renvoie dénominateur
+    int& operator[](int index);
+
+    // Operator () renvoie la valeur décimal de la fraction
+    double operator()() const;
+
     };
 }

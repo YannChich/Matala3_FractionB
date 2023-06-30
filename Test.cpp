@@ -192,6 +192,74 @@ TEST_CASE("Operator << and >>"){
     CHECK(f2.getDenominator() == 6);
 }
 
+TEST_CASE("Operator !="){
+    Fraction f1(2,3);
+    Fraction f2(4,6);
+
+    CHECK_FALSE(f1!=f2);
+    Fraction f3(1,2);
+    CHECK(f1!=f3);
+
+    Fraction f4(10,2);
+    float num = 5;
+    CHECK_FALSE(f4!=5);
+    float num2 = 4;
+    CHECK(f4!=num2);
+
+    Fraction f5(100,2);
+    float num3 = 50.1;
+    CHECK(num3!=f5);
+    float num4=50;
+    CHECK_FALSE(num4!=f5);
+}
+
+TEST_CASE("Operator +="){
+    Fraction f1{1,2};
+    Fraction f2{1,3};
+    Fraction f3{5,6};
+    CHECK((f1+=f2) == f3);
+    
+    Fraction f4{2,4};
+    float num = 0.25;
+    Fraction f5{3,4};
+    CHECK((f4+=num) == f5);
+}
+
+TEST_CASE("Testing pow method") {
+    ariel::Fraction f1(2, 3);
+
+    SUBCASE("Positive power") {
+        ariel::Fraction result = f1.pow(2);
+        CHECK(result.getNumerator() == 4);
+        CHECK(result.getDenominator() == 9);
+    }
+
+    SUBCASE("Zero power") {
+        ariel::Fraction result = f1.pow(0);
+        CHECK(result.getNumerator() == 1);
+        CHECK(result.getDenominator() == 1);
+    }
+
+    SUBCASE("Negative power") {
+        ariel::Fraction result = f1.pow(-2);
+        CHECK(result.getNumerator() == 9);
+        CHECK(result.getDenominator() == 4);
+    }
+}
+
+TEST_CASE("Operator []"){
+    Fraction f1{11,13};
+    CHECK(f1[0] == 11);
+    CHECK(f1[1] == 13);
+    CHECK_THROWS(f1[8]);
+}
+
+TEST_CASE("Operator ()"){
+    Fraction f1{27,6};
+    CHECK(f1() == 4.5);
+    Fraction f2{-8,13};
+    CHECK(f2() == -0.615);
+}
 
 
 
